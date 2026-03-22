@@ -1,7 +1,6 @@
 package J2EE_Bai6.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
@@ -9,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 import J2EE_Bai6.models.*;
@@ -42,24 +40,13 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAllCategories());
         return "book/create";
     }
-
-     @Value("${app.upload.dir:#{null}}")
-    private String configuredUploadDir;
-
-    private java.nio.file.Path getProjectImagesPath() {
-        if (configuredUploadDir != null && !configuredUploadDir.isBlank()) {
-            return Paths.get(configuredUploadDir).toAbsolutePath();
-        }
-        String userDir = System.getProperty("user.dir");
-        return Paths.get(userDir, "src", "main", "resources", "static", "images").toAbsolutePath();
-    }
-
+    
+    @SuppressWarnings("null")
     @PostMapping("/create")
     public String create(@Valid @ModelAttribute("book") Book book,
-                         BindingResult bindingResult,
-                         @RequestParam(value = "imageBook", required = false) MultipartFile file,
-                         Model model) {
-
+                     BindingResult bindingResult,
+                     @RequestParam(value = "imageBook", required = false) MultipartFile file,
+                     Model model) throws IOException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("categories", categoryService.getAllCategories());
             return "book/create";

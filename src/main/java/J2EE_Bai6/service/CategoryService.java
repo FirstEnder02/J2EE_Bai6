@@ -13,7 +13,10 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
     
     public List<Category> getAllCategories() { return categoryRepository.findAll(); }
+    @SuppressWarnings("null")
     public void saveCategory(Category category) { categoryRepository.save(category); }
+    @SuppressWarnings("null")
     public Category getCategoryById(Integer id) { return categoryRepository.findById(id).orElse(null); }
+    @SuppressWarnings("null")
     public void deleteCategory(Integer id) { categoryRepository.deleteById(id); }
 }

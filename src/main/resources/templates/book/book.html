@@ -1,4 +1,7 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{book/_layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{book/_layout}">
 <head>
   <meta charset="UTF-8">
   <title>Book List</title>
@@ -7,7 +10,7 @@
 <body>
 <div layout:fragment="content">
   <div class="container body-content">
-    <a th:href="@{/books/create}" class="btn btn-primary mb-3">Create New Book</a>
+    <a th:href="@{/books/create}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary mb-3">Create New Book</a>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -23,7 +26,7 @@
           </td>
           <td th:text="${book.price}"></td>
           <td th:text="${book.category == null ? '' : book.category.name}"></td>
-          <td>
+          <td sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/books/edit/{id}(id=${book.id})}" class="btn btn-secondary btn-sm">Edit</a>
             <form th:action="@{/books/delete/{id}(id=${book.id})}" method="post" style="display:inline;">
               <button type="submit" class="btn btn-danger btn-sm">Delete</button>

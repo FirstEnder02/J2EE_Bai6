@@ -14,8 +14,10 @@ public class BookService {
     private BookRepository bookRepository;
 
     public List<Book> getAllBooks() { return bookRepository.findAll(); }
+    @SuppressWarnings("null")
     public Book saveBook(Book book) { return bookRepository.save(book); }
     public Book getBookById(int id) { return bookRepository.findById(id).orElse(null); }
+    @SuppressWarnings("null")
     public Book updateBook(Book book) { return bookRepository.save(book); }
     public void deleteBook(int id) { bookRepository.deleteById(id); }
 }
