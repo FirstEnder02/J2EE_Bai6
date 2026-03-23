@@ -8,11 +8,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 import J2EE_Bai6.models.Account;
 import J2EE_Bai6.repository.AccountRepository;
 
+@Service
 public class AccountService implements UserDetailsService {
-
     @Autowired
     private AccountRepository accountRepository;
 
