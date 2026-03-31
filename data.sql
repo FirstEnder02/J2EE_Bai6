@@ -18,3 +18,6 @@ INSERT INTO book (id, name, price, image, category_id) VALUES
   (10, 'Refactoring', 360000, NULL, 2),
   (11, 'Java Concurrency', 410000, NULL, 4),
   (12, 'Learning Spring Security', 390000, NULL, 2);
+
+<-- admin admin123
+<-- user 123456
